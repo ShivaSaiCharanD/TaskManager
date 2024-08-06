@@ -44,4 +44,20 @@ router.post('/register', async (req, res) => {
     res.json({ status: 'User Saved' });
 });
 
+router.get('/check', async (req, res) => {
+    const token = req.header('token');
+    if (!token) {
+        return res.send(false);
+    }
+    try {
+        const verified = jwt.verify(token, jwttoken);
+        if (!verified) {
+            return res.send(false);
+        }
+        return res.send(true);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send(false);
+    }
+});
 module.exports = router;

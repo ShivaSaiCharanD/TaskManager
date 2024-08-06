@@ -9,14 +9,23 @@ const Navbar = () => {
   const [login, setLogin] = useState(false);
   const [subscriberId, setSubscriberId] = useState();
   const navigate = useNavigate();
-
+   const token = localStorage.getItem("token");
   useEffect(() => {
     const generateSubscriberId = async () => {
       if (!login) return;
       try {
-        const response = await axios.post(
-          "https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate");
+        const response = await axios.post("https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate");
         setSubscriberId(response.data);
+        const login_response = await axios.get("https://taskmanagertmbackend.vercel.app/api/user/check",{
+            headers: {
+                token: token,
+            },
+        });
+        console.log(login_response.data);
+        if (login_response.data) {
+          setUser(login_response.data);
+          setLogin(true);
+        }
       } catch (err) {
         console.error("Error generating subscriber ID:", err);
       }
@@ -24,6 +33,8 @@ const Navbar = () => {
 
     generateSubscriberId();
   }, [login]);
+
+
 
   const handleLogout = async (e) => {
     e.preventDefault();
