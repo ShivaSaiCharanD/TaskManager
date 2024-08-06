@@ -60,7 +60,7 @@ export default function Dashboard() {
                 }
             });
             getTasks();
-            setEditTaskId(null); // Exit edit mode after saving
+            setEditTaskId(null); 
         } catch (err) {
             console.log(err);
         }
