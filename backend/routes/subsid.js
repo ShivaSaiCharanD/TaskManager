@@ -16,9 +16,10 @@ function hmac_rawurlsafe_base64_string(distinct_id, secret) {
     return hash.trimEnd("=");
 }
 
-router.post('/subsId_generate', auth ,(req, res) => {
-    const { distinct_id } = req.user.username;
+router.post('/subsId_generate', (req, res) => {
+    const { distinct_id } = req.body;
     const secret = process.env.INBOXSECRET;
+    console.log(distinct_id);
     if (!secret) {
         return res.status(400).send('Input is required');
     }

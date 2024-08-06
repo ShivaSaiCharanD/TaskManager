@@ -14,6 +14,7 @@ export default function Login() {
       console.log(response.data);
       if (response.data.status) {
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('username', response.data.username);
         navigate('/dashboard');
       }
     } catch (err) {
