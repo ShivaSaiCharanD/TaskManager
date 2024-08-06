@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { useEffect, useState } from "react";
 import SuprSendInbox from "@suprsend/react-inbox";
@@ -14,22 +14,18 @@ const Navbar = () => {
     const generateSubscriberId = async () => {
       if (!login) return;
       try {
-        let username = localStorage.getItem("username");
-        const subscriberResponse = await axios.post(
-          "https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate",
-          { distinct_id: username }
-        );
-
-        setSubscriberId(subscriberResponse.data);
+        const response = await axios.post(
+          "https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate");
+        setSubscriberId(response.data);
       } catch (err) {
-        return;
+        console.error("Error generating subscriber ID:", err);
       }
     };
 
     generateSubscriberId();
-  }, [login, user]);
+  }, [login]);
 
-  const handlelogout = async (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setLogin(false);
@@ -43,39 +39,17 @@ const Navbar = () => {
         style={{ width: "90%", maxWidth: "1200px" }}
       >
         <div className="container-fluid">
-          {!login && (
-            <Link className="navbar-brand d-flex align-items-center" to="/">
-              <img
-                src="./task-list.svg"
-                alt="logo"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  padding: "0.8px",
-                }}
-              />
-              <span className="fs-5 text-dark fw-semibold ms-2">
-                Task Manager
-              </span>
-            </Link>
-          )}
-          {login && (
-            <Link
-              className="navbar-brand d-flex align-items-center"
-              to="/userhome"
-            >
-              <img
-                src="./task-list.svg"
-                alt="logo"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  padding: "0.8px",
-                }}
-              />
-              <span className="fs-5 text-dark fw-semibold ms-2">Home</span>
-            </Link>
-          )}
+          <Link className="navbar-brand d-flex align-items-center" to={login ? "/userhome" : "/"}>
+            <img
+              src="./task-list.svg"
+              alt="logo"
+              style={{ width: "40px", height: "40px", padding: "0.8px" }}
+            />
+            <span className="fs-5 text-dark fw-semibold ms-2">
+              {login ? "Home" : "Task Manager"}
+            </span>
+          </Link>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -87,72 +61,51 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          {!login && (
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              {!login ? (
                 <li className="nav-item">
                   <Link className="nav-link text-dark" to="/login">
                     Login
                   </Link>
                 </li>
-              </ul>
-            </div>
-          )}
-          {login && (
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <Link
-                    className="nav-link text-dark fw-bold"
-                    to="/userprofile"
-                  >
-                    {user}
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link text-danger fw-bold"
-                    onClick={handlelogout}
-                  >
-                    Logout
-                  </Link>
-                </li>
-                <SuprSendInbox
-                  theme={{
-                    badge: {
-                      backgroundColor: "pink",
-                      color: "black",
-                      margin: "0px",
-                    },
-                    bell: { color: "blue" },
-                    header: {
-                      container: { backgroundColor: "#0099ff" },
-                      headertext: { color: "black" },
-                      markAllReadText: { color: "black", fontWeight: "bold" },
-                    },
-                    notification: {
-                      actions: {
-                        container: { hoverBackgroundColor: "#349beb" },
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link text-dark fw-bold" to="/userprofile">
+                      {user}
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link text-danger fw-bold" onClick={handleLogout}>
+                      Logout
+                    </Link>
+                  </li>
+                  <SuprSendInbox
+                    theme={{
+                      badge: { backgroundColor: "pink", color: "black", margin: "0px" },
+                      bell: { color: "blue" },
+                      header: {
+                        container: { backgroundColor: "#0099ff" },
+                        headertext: { color: "black" },
+                        markAllReadText: { color: "black", fontWeight: "bold" },
                       },
-                      expiresText: { color: "red" },
-                      actionsMenuIcon: { color: "blue" },
-                    },
-                  }}
-                  themeType="light / dark"
-                  workspaceKey={process.env.WorkspaceKey}
-                  
-                  subscriberId={subscriberId}
-                  distinctId={localStorage.getItem("username")}
-                />
-              </ul>
-            </div>
-          )}
+                      notification: {
+                        actions: { container: { hoverBackgroundColor: "#349beb" } },
+                        expiresText: { color: "red" },
+                        actionsMenuIcon: { color: "blue" },
+                      },
+                    }}
+                    themeType="light / dark"
+                    workspaceKey={process.env.WorkspaceKey}
+                    subscriberId={subscriberId}
+                    distinctId={localStorage.getItem("username")}
+                  />
+                </>
+              )}
+            </ul>
+          </div>
         </div>
       </nav>
     </div>
