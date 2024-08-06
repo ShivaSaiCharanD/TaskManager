@@ -211,7 +211,7 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <SuprSendInbox
-                                        theme={{sampleLightTheme}}
+                                        theme={sampleLightTheme}
                                         themeType="light"
                                         workspaceKey={process.env.WorkspaceKey || "o9VRflljs3BibiN7NzJ9"}
                                         subscriberId={subscriberId}
