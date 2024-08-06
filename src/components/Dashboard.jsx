@@ -12,7 +12,7 @@ export default function Dashboard() {
 
     const getTasks = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/api/task/get', {
+            const response = await axios.get('https://taskmanagertmbackend.vercel.app/api/task/get', {
                 headers: {
                     Authorization: `${localStorage.getItem('token')}`
                 }
@@ -25,7 +25,7 @@ export default function Dashboard() {
 
     const addTask = async () => {
         try {
-            const response = await axios.post('http://localhost:4000/api/task/add', newTaskData, {
+            const response = await axios.post('https://taskmanagertmbackend.vercel.app/api/task/add', newTaskData, {
                 headers: {
                     Authorization: `${localStorage.getItem('token')}`
                 }
@@ -41,7 +41,7 @@ export default function Dashboard() {
 
     const deleteTask = async (taskId) => {
         try {
-            await axios.delete(`http://localhost:4000/api/task/delete?_id=${taskId}`, {
+            await axios.delete(`https://taskmanagertmbackend.vercel.app/api/task/delete?_id=${taskId}`, {
                 headers: {
                     Authorization: `${localStorage.getItem('token')}`
                 }
@@ -54,7 +54,7 @@ export default function Dashboard() {
 
     const updateTask = async (taskId, updatedTask) => {
         try {
-            await axios.put(`http://localhost:4000/api/task/update`, { _id: taskId, ...updatedTask }, {
+            await axios.put(`https://taskmanagertmbackend.vercel.app/api/task/update`, { _id: taskId, ...updatedTask }, {
                 headers: {
                     Authorization: `${localStorage.getItem('token')}`
                 }

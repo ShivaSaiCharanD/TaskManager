@@ -10,7 +10,7 @@ export default function Login() {
   const navigate = useNavigate();
   const handleLogin = async() => {
     try {
-      const response = await axios.post('http://localhost:4000/api/user/login', { username, password });
+      const response = await axios.post('https://taskmanagertmbackend.vercel.app/api/user/login', { username, password });
       console.log(response.data);
       if (response.data.status) {
         localStorage.setItem('token', response.data.token);

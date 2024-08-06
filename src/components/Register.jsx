@@ -10,7 +10,7 @@ export default function Register() {
     const navigate = useNavigate();
     const handleRegister = async () => {
         try {
-            const response = await axios.post('http://localhost:4000/api/user/register', { username, password });
+            const response = await axios.post('https://taskmanagertmbackend.vercel.app/api/user/register', { username, password });
             console.log(response.data);
             if (response.data.success) {
                 localStorage.setItem('token', response.data.token);
