@@ -211,21 +211,8 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <SuprSendInbox
-                                        theme={{
-                                            badge: { backgroundColor: "pink", color: "black", margin: "0px" },
-                                            bell: { color: "blue" },
-                                            header: {
-                                                container: { backgroundColor: "#0099ff" },
-                                                headertext: { color: "black" },
-                                                markAllReadText: { color: "black", fontWeight: "bold" },
-                                            },
-                                            notification: {
-                                                actions: { container: { hoverBackgroundColor: "#349beb" } },
-                                                expiresText: { color: "red" },
-                                                actionsMenuIcon: { color: "blue" },
-                                            },
-                                        }}
-                                        themeType="light / dark"
+                                        theme={{sampleLightTheme}}
+                                        themeType="light"
                                         workspaceKey={process.env.WorkspaceKey || "o9VRflljs3BibiN7NzJ9"}
                                         subscriberId={subscriberId}
                                         distinctId={localStorage.getItem("username")}
