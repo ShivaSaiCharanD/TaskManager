@@ -42,7 +42,7 @@ export default function Register() {
                         <input type="password" id='password' onChange={handlePassword} className='form-field' aria-label='Password' />
                     </div>
                     <div>
-                        <button className='btn btn-primary' onClick={handleRegister}>Login</button>
+                        <button className='btn btn-primary' onClick={handleRegister}>Register</button>
                     </div>
                 </div>
             </div>

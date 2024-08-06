@@ -86,6 +86,9 @@ const Navbar = () => {
                                     <Link className="nav-link text-dark" to="/login">
                                         Login
                                     </Link>
+                                    <Link className="nav-link text-dark" to="/register">
+                                        Register
+                                    </Link>
                                 </li>
                             ) : (
                                 <>
