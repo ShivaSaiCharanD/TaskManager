@@ -13,8 +13,7 @@ const Navbar = () => {
     useEffect(() => {
         const generateSubscriberId = async () => {
             try {
-                const username = localStorage.getItem("username");
-                const response = await axios.post("https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate", username);
+                const response = await axios.post("https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate", {distinct_id:localStorage.getItem("username")});
                 setSubscriberId(response.data);
                 console.log(response.data);
             } catch (err) {
