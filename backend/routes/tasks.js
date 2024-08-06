@@ -67,7 +67,7 @@ router.put('/update', auth, async (req, res) => {
 // Delete user tasks
 router.delete('/delete', auth, async (req, res) => {
     try {
-        const { _id } = req.body;
+        const { _id } = req.query;
         console.log(_id);
         if (!_id) {
             return res.status(400).send({ error: 'Task ID is required.' });
@@ -79,7 +79,7 @@ router.delete('/delete', auth, async (req, res) => {
             return res.status(404).send({ error: 'Task not found.' });
         }
 
-        await task.remove();
+        await task.deleteOne();
         res.status(200).send({ message: 'Task deleted successfully.', task });
     } catch (error) {
         res.status(500).send({ error: 'Failed to delete task.' });

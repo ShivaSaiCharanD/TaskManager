@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Home() {
   return (
-    <div>Welcome Harry!!</div>
+    <div>Welcome</div>
   )
 }
