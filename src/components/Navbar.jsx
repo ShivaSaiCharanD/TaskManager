@@ -8,35 +8,7 @@ const Navbar = () => {
   const [user, setUser] = useState();
   const [login, setLogin] = useState(false);
   const [subscriberId, setSubscriberId] = useState();
-  const location = useLocation();
   const navigate = useNavigate();
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        setLogin(false);
-        return;
-      }
-      try {
-        try {
-          const response = await axios.post(
-            "https://tdlback.vercel.app/api/users/check",
-            { token }
-          );
-          if (response.status === 200) {
-            setLogin(true);
-          }
-          setUser(response.data.name);
-        } catch (err) {
-          setLogin(false);
-        }
-      } catch (err) {
-        setLogin(false);
-      }
-    };
-
-    checkLoginStatus();
-  }, [location]);
 
   useEffect(() => {
     const generateSubscriberId = async () => {
@@ -44,7 +16,7 @@ const Navbar = () => {
       try {
         let username = localStorage.getItem("username");
         const subscriberResponse = await axios.post(
-          "https://tdlback.vercel.app/api/subsid/subsId_generate",
+          "https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate",
           { distinct_id: username }
         );
 
