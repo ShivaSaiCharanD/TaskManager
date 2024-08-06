@@ -57,11 +57,6 @@ const Navbar = () => {
             >
                 <div className="container-fluid">
                     <Link className="navbar-brand d-flex align-items-center" to={login ? "/userhome" : "/"}>
-                        <img
-                            src="./checklist.jpg"
-                            alt="logo"
-                            style={{ width: "40px", height: "40px", padding: "0.8px" }}
-                        />
                         <span className="fs-5 text-dark fw-semibold ms-2">
                             {login ? "Home" : "Task Manager"}
                         </span>
