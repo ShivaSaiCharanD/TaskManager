@@ -82,11 +82,18 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             {!login ? (
+                                <>
                                 <li className="nav-item">
                                     <Link className="nav-link text-dark" to="/login">
                                         Login
                                     </Link>
                                 </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link text-dark" to="/register">
+                                        Register
+                                    </Link>
+                                </li>
+                                </>
                             ) : (
                                 <>
                                     <li className="nav-item">
@@ -115,7 +122,7 @@ const Navbar = () => {
                                             },
                                         }}
                                         themeType="light / dark"
-                                        workspaceKey="o9VRflljs3BibiN7NzJ9"
+                                        workspaceKey={process.env.WorkspaceKey}
                                         subscriberId={subscriberId}
                                         distinctId={localStorage.getItem("username")}
                                     />
