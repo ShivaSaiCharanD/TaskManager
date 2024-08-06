@@ -4,6 +4,115 @@ import { useEffect, useState } from "react";
 import SuprSendInbox from "@suprsend/react-inbox";
 import axios from "axios";
 
+const lightColors = {
+    primary: '#007bff',
+    primaryText: '#212529',
+    secondaryText: '#6c757d',
+    border: '#dee2e6',
+    main: '#ffffff',
+    error: '#dc3545'
+  }
+  
+  const sampleLightTheme = {
+    bell: { color: '#0000ff' },
+    badge: { backgroundColor: lightColors.primary },
+    header: {
+      container: {
+        backgroundColor: lightColors.main,
+        borderBottom: `0.5px solid ${lightColors.border}`,
+        boxShadow: '0 0 5px 0 rgba(0, 0, 0, 0.1)'
+      },
+      headerText: { color: lightColors.primaryText },
+      markAllReadText: { color: lightColors.primary }
+    },
+    tabs: {
+      color: lightColors.primaryText,
+      unselectedColor: lightColors.secondaryText + 'D9',
+      bottomColor: lightColors.primary,
+      badgeColor: 'rgba(0, 123, 255, 0.5)',
+      badgeText: lightColors.primaryText
+    },
+    notificationsContainer: {
+      container: {
+        backgroundColor: lightColors.main,
+        borderColor: lightColors.border
+      },
+      noNotificationsText: {
+        color: lightColors.primaryText
+      },
+      noNotificationsSubtext: {
+        color: lightColors.secondaryText
+      },
+      loader: { color: lightColors.primary }
+    },
+    notification: {
+      container: {
+        borderBottom: `1px solid ${lightColors.border}`,
+        readBackgroundColor: lightColors.main,
+        unreadBackgroundColor: '#f8f9fa',
+        hoverBackgroundColor: '#e9ecef'
+      },
+      pinnedText: {
+        color: lightColors.secondaryText
+      },
+      pinnedIcon: {
+        color: 'red'
+      },
+      headerText: { color: lightColors.primaryText },
+      bodyText: {
+        color: lightColors.secondaryText,
+        blockquoteColor: 'rgba(0, 123, 255, 0.5)'
+      },
+      unseenDot: { backgroundColor: lightColors.primary },
+      createdOnText: { color: lightColors.secondaryText },
+      subtext: { color: '#adb5bd' },
+      actions: [
+        { container: { backgroundColor: lightColors.primary } },
+        {
+          container: {
+            borderColor: lightColors.border,
+            backgroundColor: 'transparent',
+            hoverBackgroundColor: lightColors.main
+          },
+          text: { color: lightColors.secondaryText }
+        }
+      ],
+      expiresText: {
+        backgroundColor: 'rgba(0, 123, 255, 0.5)',
+        color: lightColors.secondaryText,
+        expiringBackgroundColor: 'rgba(220, 53, 69, 0.15)',
+        expiringColor: lightColors.error
+      },
+      actionsMenuIcon: {
+        color: lightColors.secondaryText,
+        hoverBackgroundColor: 'rgba(0, 123, 255, 0.5)'
+      },
+      actionsMenu: {
+        backgroundColor: lightColors.main,
+        borderColor: lightColors.border
+      },
+      actionsMenuItem: { hoverBackgroundColor: 'rgba(0, 123, 255, 0.2)' },
+      actionsMenuItemIcon: { color: lightColors.secondaryText },
+      actionsMenuItemText: {
+        color: lightColors.secondaryText
+      }
+    },
+    toast: {
+      container: {
+        backgroundColor: lightColors.main,
+        borderColor: lightColors.border,
+        position: 'fixed',
+        bottom: '10px',
+        right: '10px',
+        zIndex: 1050,  // Ensure it stays on top
+      },
+      headerText: { color: lightColors.primaryText },
+      bodyText: {
+        color: lightColors.secondaryText,
+        blockquoteColor: lightColors.border
+      }
+    }
+  }
 const Navbar = () => {
     const [user, setUser] = useState();
     const [login, setLogin] = useState(false);
