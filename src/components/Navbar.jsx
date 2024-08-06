@@ -122,7 +122,7 @@ const Navbar = () => {
                                             },
                                         }}
                                         themeType="light / dark"
-                                        workspaceKey={process.env.WorkspaceKey}
+                                        workspaceKey={process.env.SUPRSEND_WORKSPACE_KEY}
                                         subscriberId={subscriberId}
                                         distinctId={localStorage.getItem("username")}
                                     />
