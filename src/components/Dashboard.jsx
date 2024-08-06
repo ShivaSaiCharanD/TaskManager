@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
-import task from '../../backend/models/task';
+
 
 export default function Dashboard() {
     const [tasks, setTasks] = useState([]);
