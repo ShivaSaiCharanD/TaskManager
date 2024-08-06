@@ -1,0 +1,6 @@
+body{
+    background-image: url('components/bg.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    max-width: 100%;
+}

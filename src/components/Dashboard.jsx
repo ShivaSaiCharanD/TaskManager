@@ -126,9 +126,8 @@ export default function Dashboard() {
 
     return (
         <>
-            <div>Welcome</div>
             <div>
-                <h1>Tasks</h1>
+                <h1 className='heading'>Tasks</h1>
                 <table>
                     <thead>
                         <tr>

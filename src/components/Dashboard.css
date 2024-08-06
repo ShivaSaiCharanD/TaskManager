@@ -35,4 +35,7 @@ table {
     margin-top: 15px;
     border: #ddd;
   }
-  
+  .heading{
+    text-align: center;
+    margin-top: 20px;
+  }
