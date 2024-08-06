@@ -1,4 +1,5 @@
 const user = require('./routes/user');
+const task = require('./routes/tasks');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -16,8 +17,8 @@ try {
     console.log('Error in connecting to MongoDB');
 }
 
-app.use('/api', user);
-
+app.use('/api/user', user);
+app.use('/api/task', task);
 app.listen(4000, () => {
     console.log('Server started at port 4000');
 });

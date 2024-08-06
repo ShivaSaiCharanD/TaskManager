@@ -16,7 +16,7 @@ router.post('/login', async (req, res) => {
         if (!isPasswordValid) {
             return res.json({ status: 'Password Incorrect' });
         }
-        const token = jwt.sign({ username: user.username}, 'suspendisse', { expiresIn: '1h' });
+        const token = jwt.sign({ _id: user._id}, 'suspendisse', { expiresIn: '1h' });
         return res.json({ status: 'Login Successful', token });
     } catch (error) {
         console.error(error);
