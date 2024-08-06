@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const crypto = require("crypto");
+const auth = require('../middleware/auth');
 const {Suprsend,WorkflowTriggerRequest} = require("@suprsend/node-sdk");
 
 
@@ -31,7 +32,7 @@ router.post('/subsId_generate', (req, res) => {
 }
 );
 
-router.post('/trigger', async (req, res) => {
+router.post('/trigger', auth ,async (req, res) => {
     const {taskname} = req.body;
     const username = req.user.username;
     const workflow_payload = {
