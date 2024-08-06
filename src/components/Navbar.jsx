@@ -12,11 +12,11 @@ const Navbar = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const generateSubscriberId = async () => {
-            if (!login) return;
             try {
                 const username = localStorage.getItem("username");
                 const response = await axios.post("https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate", username);
                 setSubscriberId(response.data);
+                console.log(response.data);
             } catch (err) {
                 console.error("Error generating subscriber ID:", err);
             }

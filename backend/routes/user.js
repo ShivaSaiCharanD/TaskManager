@@ -36,7 +36,7 @@ router.post('/register', async (req, res) => {
         return res.json({ status: 'User Already Exists' });
     }
     const suprSendUser = supr_client.user.get_instance(username);
-    const response = await suprSendUser.save();
+    const response = suprSendUser.save();
     console.log(response);
     const user = new User({ username, password });
     await user.save();
