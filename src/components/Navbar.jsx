@@ -10,31 +10,36 @@ const Navbar = () => {
     const [subscriberId, setSubscriberId] = useState();
     const location = useLocation();
     const navigate = useNavigate();
-    const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");
     useEffect(() => {
         const generateSubscriberId = async () => {
             if (!login) return;
             try {
-                const response = await axios.post("https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate",username);
+                const username = localStorage.getItem("username");
+                const response = await axios.post("https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate", username);
                 setSubscriberId(response.data);
-                const login_response = await axios.get("https://taskmanagertmbackend.vercel.app/api/user/check", {
-                    headers: {
-                        token: token,
-                    },
-                });
-                console.log(login_response.data);
-                if (login_response.data) {
-                    setUser(login_response.data);
-                    setLogin(true);
-                }
             } catch (err) {
                 console.error("Error generating subscriber ID:", err);
             }
         };
-
+        
         generateSubscriberId();
-    }, [login, location]);
+    }, [login]);
+    useEffect(() => {
+        const generatelogresponse = async () => {
+            const token = localStorage.getItem("token");
+            const login_response = await axios.get("https://taskmanagertmbackend.vercel.app/api/user/check", {
+                headers: {
+                    token: token,
+                },
+            });
+            console.log(login_response.data);
+            if (login_response.data) {
+                setUser(login_response.data);
+                setLogin(true);
+            }
+        }
+        generatelogresponse();
+    }, [location]);
 
 
 
