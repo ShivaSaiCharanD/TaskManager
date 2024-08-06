@@ -31,7 +31,11 @@ export default function Dashboard() {
                     Authorization: `${localStorage.getItem('token')}`
                 }
             });
-            const trigger_response = await axios.post('https://taskmanagertmbackend.vercel.app/api/subsid/trigger', {taskname: newTaskData.task});
+            const trigger_response = await axios.post('https://taskmanagertmbackend.vercel.app/api/subsid/trigger', {taskname: newTaskData.task},{
+                headers: {
+                    Authorization: `${localStorage.getItem('token')}`
+                }
+            });
             console.log(trigger_response);
             console.log(response);
             getTasks();
