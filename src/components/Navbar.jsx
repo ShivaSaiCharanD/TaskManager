@@ -58,7 +58,7 @@ const Navbar = () => {
                 <div className="container-fluid">
                     <Link className="navbar-brand d-flex align-items-center" to={login ? "/userhome" : "/"}>
                         <img
-                            src="./task-list.svg"
+                            src="./checklist-min.webp"
                             alt="logo"
                             style={{ width: "40px", height: "40px", padding: "0.8px" }}
                         />
