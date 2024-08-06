@@ -10,45 +10,37 @@ const Navbar = () => {
     const [subscriberId, setSubscriberId] = useState();
     const location = useLocation();
     const navigate = useNavigate();
-
     useEffect(() => {
         const generateSubscriberId = async () => {
             try {
-                const response = await axios.post("https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate", {
-                    distinct_id: localStorage.getItem("username"),
-                });
+                const response = await axios.post("https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate", {distinct_id:localStorage.getItem("username")});
                 setSubscriberId(response.data);
                 console.log(response.data);
             } catch (err) {
                 console.error("Error generating subscriber ID:", err);
             }
         };
-
-        if (login && user) {
-            generateSubscriberId();
-        }
-    }, [login, user]);
-
+        
+        generateSubscriberId();
+    }, [login,user]);
     useEffect(() => {
         const generatelogresponse = async () => {
             const token = localStorage.getItem("token");
-            try {
-                const login_response = await axios.get("https://taskmanagertmbackend.vercel.app/api/user/check", {
-                    headers: {
-                        token: token,
-                    },
-                });
-                console.log(login_response.data);
-                if (login_response.data) {
-                    setUser(login_response.data.username); // Assuming `username` is the correct field
-                    setLogin(true);
-                }
-            } catch (err) {
-                console.error("Error checking login status:", err);
+            const login_response = await axios.get("https://taskmanagertmbackend.vercel.app/api/user/check", {
+                headers: {
+                    token: token,
+                },
+            });
+            console.log(login_response.data);
+            if (login_response.data) {
+                setUser(login_response.data);
+                setLogin(true);
             }
-        };
+        }
         generatelogresponse();
     }, [location]);
+
+
 
     const handleLogout = async (e) => {
         e.preventDefault();
@@ -90,18 +82,11 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             {!login ? (
-                                <>
-                                    <li className="nav-item">
-                                        <Link className="nav-link text-dark" to="/login">
-                                            Login
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link text-dark" to="/register">
-                                            Register
-                                        </Link>
-                                    </li>
-                                </>
+                                <li className="nav-item">
+                                    <Link className="nav-link text-dark" to="/login">
+                                        Login
+                                    </Link>
+                                </li>
                             ) : (
                                 <>
                                     <li className="nav-item">
