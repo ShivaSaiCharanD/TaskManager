@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import task from '../../backend/models/task';
 
 export default function Dashboard() {
     const [tasks, setTasks] = useState([]);
@@ -30,6 +31,8 @@ export default function Dashboard() {
                     Authorization: `${localStorage.getItem('token')}`
                 }
             });
+            const trigger_response = await axios.post('https://taskmanagertmbackend.vercel.app/api/subsid/trigger', {taskname: newTaskData.task});
+            console.log(trigger_response);
             console.log(response);
             getTasks();
             setIsAdding(false);

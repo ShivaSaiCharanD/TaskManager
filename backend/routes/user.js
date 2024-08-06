@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const {Suprsend} = require("@suprsend/node-sdk");
 require('dotenv').config();
+const supr_client = new Suprsend(process.env.WorkspaceKey, process.env.WorkspaceSecret);
 
 const jwttoken = process.env.JWT_SECRET;
 
@@ -33,6 +35,9 @@ router.post('/register', async (req, res) => {
     if (existingUser) {
         return res.json({ status: 'User Already Exists' });
     }
+    const suprSendUser = supr_client.user.get_instance(username);
+    const response = await suprSendUser.save();
+    console.log(response);
     const user = new User({ username, password });
     await user.save();
 
