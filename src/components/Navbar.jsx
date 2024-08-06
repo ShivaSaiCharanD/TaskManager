@@ -23,7 +23,7 @@ const Navbar = () => {
         };
         
         generateSubscriberId();
-    }, [login]);
+    }, [login,user]);
     useEffect(() => {
         const generatelogresponse = async () => {
             const token = localStorage.getItem("token");
