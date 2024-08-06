@@ -116,7 +116,7 @@ const Navbar = () => {
                                             },
                                         }}
                                         themeType="light / dark"
-                                        workspaceKey={4k-mI1yN3y1o1f4vqutYnzT-nuhRJsGBs2GiNci8iX8}
+                                        workspaceKey={"4k-mI1yN3y1o1f4vqutYnzT-nuhRJsGBs2GiNci8iX8"}
                                         subscriberId={subscriberId}
                                         distinctId={localStorage.getItem("username")}
                                     />
