@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./navbar.css";
 import { useEffect, useState } from "react";
 import SuprSendInbox from "@suprsend/react-inbox";
@@ -8,6 +8,7 @@ const Navbar = () => {
   const [user, setUser] = useState();
   const [login, setLogin] = useState(false);
   const [subscriberId, setSubscriberId] = useState();
+  const location = useLocation();
   const navigate = useNavigate();
    const token = localStorage.getItem("token");
   useEffect(() => {
@@ -32,7 +33,7 @@ const Navbar = () => {
     };
 
     generateSubscriberId();
-  }, [login]);
+  }, [login,location]);
 
 
 
