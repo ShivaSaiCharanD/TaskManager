@@ -16,7 +16,6 @@ export default function Register() {
 
             if (response.data.status === 'User Saved') {
                 localStorage.setItem('token', response.data.token);
-                navigate('/dashboard');
             }
         } catch (err) {
             console.log(err);
