@@ -124,7 +124,6 @@ const Navbar = () => {
             try {
                 const response = await axios.post("https://taskmanagertmbackend.vercel.app/api/subsid/subsId_generate", {distinct_id:localStorage.getItem("username")});
                 setSubscriberId(response.data);
-                console.log(response.data);
             } catch (err) {
                 console.error("Error generating subscriber ID:", err);
             }
@@ -140,7 +139,6 @@ const Navbar = () => {
                     token: token,
                 },
             });
-            console.log(login_response.data);
             if (login_response.data) {
                 setUser(login_response.data);
                 setLogin(true);
